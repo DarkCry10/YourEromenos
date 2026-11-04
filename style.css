@@ -1,12 +1,10 @@
 /* ==========================================================================
-   YOUR EROMENOS — DARKCRY 1.0 OFFICIAL ARCHIVE
-   Estilo: Scrapbook Helénico / Mármol, Oro, Carmesí y Pergamino
+   YOUR EROMENOS — DARKCRY 1.0 (LAYOUT ESTABLE CON CSS GRID)
    ========================================================================== */
 
 :root {
   --color-pearl: #f4efea;
   --color-marble-base: #d1c7bd;
-  --color-paper-warm: #ede6dd;
   --color-paper-card: #fbf9f6;
   --color-crimson: #720e1e;
   --color-crimson-dark: #4a050f;
@@ -19,10 +17,17 @@
   --font-body: 'Cormorant Garamond', Georgia, serif;
 }
 
-* {
+/* Reset Global de Seguridad */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 body {
@@ -34,7 +39,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   Barra de Navegación Superior
+   Barra Superior de Navegación
    -------------------------------------------------------------------------- */
 .top-nav {
   position: sticky;
@@ -65,7 +70,7 @@ body {
 
 .nav-title {
   font-family: var(--font-classical);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   letter-spacing: 0.15rem;
   color: var(--color-ink);
   font-weight: 700;
@@ -81,6 +86,7 @@ body {
   border: 1px solid var(--color-crimson);
   padding: 0.4rem 0.8rem;
   background-color: var(--color-pearl);
+  transition: all 0.2s ease;
 }
 
 .nav-link-main:hover {
@@ -89,82 +95,61 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   Estructura con Columnas de Mármol
+   Arquitectura Grid: Pilares Laterales y Contenido Central
    -------------------------------------------------------------------------- */
 .shrine-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) 150px;
+  max-width: 1250px;
+  margin: 0 auto;
   width: 100%;
   min-height: calc(100vh - 60px);
 }
 
 .shrine-pillar {
-  flex: 0 0 170px;
-  user-select: none;
+  position: relative;
+  width: 100%;
 }
 
 .shrine-pillar img {
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 60px);
   object-fit: cover;
+  object-position: top center;
   position: sticky;
   top: 60px;
   display: block;
 }
 
 .shrine-content {
-  flex: 1 1 980px;
-  max-width: 980px;
   background-color: var(--color-pearl);
-  padding: 3rem 3.5rem;
+  padding: 2.5rem 2.5rem;
   border-left: 2px solid var(--color-gold);
   border-right: 2px solid var(--color-gold);
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  min-width: 0; /* Previene desbordamiento del grid */
 }
 
 /* --------------------------------------------------------------------------
-   Cabecera Hero
+   Cabecera Hero Unificada (Tamaño Real y Proporcionado)
    -------------------------------------------------------------------------- */
 .scrapbook-header {
+  width: 100%;
   margin-bottom: 3rem;
 }
 
-.header-frame {
-  position: relative;
+.header-unified-wrap {
   width: 100%;
+  border: 1px solid var(--color-gold);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
 }
 
-.header-frame-bg {
+.header-unified-img {
   width: 100%;
   height: auto;
   display: block;
-  border: 1px solid var(--color-gold-dark);
-}
-
-.header-overlay-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  width: 75%;
-}
-
-.title-cutout {
-  max-width: 95%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-.project-tag {
-  font-family: var(--font-classical);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--color-crimson);
-  letter-spacing: 0.25rem;
-  margin-top: 0.8rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -172,8 +157,9 @@ body {
    -------------------------------------------------------------------------- */
 .covers-showcase {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   justify-content: center;
+  align-items: stretch;
   margin-bottom: 3.5rem;
 }
 
@@ -185,20 +171,24 @@ body {
   border: 1px solid #d4c7b8;
   box-shadow: 3px 4px 12px rgba(0, 0, 0, 0.12);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .cover-card:first-child {
-  transform: rotate(-1deg);
+  transform: rotate(-0.5deg);
 }
 
 .cover-card:last-child {
-  transform: rotate(1deg);
+  transform: rotate(0.5deg);
 }
 
 .cover-card .image-wrapper img {
   width: 100%;
   height: auto;
-  display: block;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   border: 1px solid var(--color-gold);
 }
 
@@ -222,13 +212,14 @@ body {
 .curatorial-banner-wrap {
   position: relative;
   width: 100%;
+  border: 1px solid var(--color-gold);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .curatorial-bg {
   width: 100%;
   height: auto;
   display: block;
-  border: 1px solid var(--color-gold);
 }
 
 .curatorial-text {
@@ -236,21 +227,21 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 48%;
+  width: 52%;
   text-align: center;
   color: var(--color-ink);
 }
 
 .curatorial-heading {
   font-family: var(--font-classical);
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   color: var(--color-crimson);
   letter-spacing: 0.15rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
 .curatorial-body {
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.5;
   font-style: italic;
   color: #2a2a2a;
@@ -266,7 +257,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   Láminas de Canciones
+   Entradas del Álbum & Fragmentos del Diario
    -------------------------------------------------------------------------- */
 .tracks-scrapbook {
   display: flex;
@@ -276,11 +267,12 @@ body {
 
 .track-entry {
   display: flex;
-  gap: 2.2rem;
+  gap: 2rem;
   background-color: var(--color-paper-card);
   border: 1px solid #d9cebf;
   padding: 1.8rem;
   box-shadow: 2px 3px 14px rgba(0, 0, 0, 0.06);
+  align-items: center;
 }
 
 .track-entry:nth-child(even) {
@@ -288,22 +280,20 @@ body {
 }
 
 .track-media {
-  flex: 0 0 340px;
+  flex: 0 0 320px;
+  max-width: 320px;
 }
 
 .track-media img {
   width: 100%;
   height: auto;
-  display: block;
   border: 1px solid var(--color-gold);
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .track-info {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  min-width: 0;
 }
 
 .track-num {
@@ -316,30 +306,48 @@ body {
 
 .track-title {
   font-family: var(--font-classical);
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   color: var(--color-ink);
-  margin: 0.3rem 0 1rem 0;
-  letter-spacing: 0.05rem;
+  margin: 0.3rem 0 0.8rem 0;
 }
 
 .track-lyrics {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   line-height: 1.5;
   color: var(--color-crimson);
   font-style: italic;
   border-left: 2px solid var(--color-crimson);
-  padding-left: 1.1rem;
-  margin-bottom: 1.1rem;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
 }
 
-.track-synopsis {
+.entry-journal-box {
+  background-color: #f3ece4;
+  border-left: 3px solid var(--color-gold);
+  padding: 1rem 1.2rem;
+  margin-top: 0.6rem;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.04);
+}
+
+.journal-tag {
+  display: block;
+  font-family: var(--font-classical);
+  font-size: 0.75rem;
+  letter-spacing: 0.12rem;
+  color: var(--color-gold-dark);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.journal-text {
   font-size: 1rem;
-  color: var(--color-ink-muted);
   line-height: 1.6;
+  color: #2b2b2b;
+  font-style: italic;
 }
 
 /* --------------------------------------------------------------------------
-   Pie de Página
+   Pie de Página Institucional
    -------------------------------------------------------------------------- */
 .scrapbook-footer {
   margin-top: 5rem;
@@ -356,12 +364,10 @@ body {
 }
 
 .footer-crest {
-  width: 90px;
-  height: 90px;
-  border-radius: 12px;
-  object-fit: cover;
-  border: 2px solid var(--color-gold);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
 }
 
 .footer-title {
@@ -389,18 +395,22 @@ body {
   font-size: 0.85rem;
   letter-spacing: 0.1rem;
   border: 1px solid var(--color-crimson-dark);
+  transition: all 0.2s ease;
 }
 
 .footer-btn:hover {
   background-color: var(--color-gold);
   color: var(--color-ink);
-  border-color: var(--color-gold-dark);
 }
 
 /* --------------------------------------------------------------------------
    Adaptabilidad Móvil
    -------------------------------------------------------------------------- */
 @media (max-width: 950px) {
+  .shrine-wrapper {
+    grid-template-columns: 1fr;
+  }
+
   .shrine-pillar {
     display: none;
   }
@@ -422,7 +432,11 @@ body {
   }
 
   .curatorial-text {
-    width: 80%;
+    width: 82%;
+  }
+
+  .curatorial-body {
+    font-size: 0.85rem;
   }
 
   .track-entry,
@@ -433,30 +447,6 @@ body {
   .track-media {
     flex: auto;
     width: 100%;
+    max-width: 100%;
   }
-}
-/* Cuadro de texto para las notas del diario */
-.entry-journal-box {
-  background-color: #f3ece4;
-  border-left: 3px solid var(--color-gold);
-  padding: 1rem 1.2rem;
-  margin-top: 0.8rem;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.04);
-}
-
-.journal-tag {
-  display: block;
-  font-family: var(--font-classical);
-  font-size: 0.75rem;
-  letter-spacing: 0.12rem;
-  color: var(--color-gold-dark);
-  font-weight: 700;
-  margin-bottom: 0.4rem;
-}
-
-.journal-text {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: #2b2b2b;
-  font-style: italic;
 }
