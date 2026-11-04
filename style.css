@@ -99,8 +99,8 @@ body {
    -------------------------------------------------------------------------- */
 .shrine-wrapper {
   display: grid;
-  grid-template-columns: 150px minmax(0, 1fr) 150px;
-  max-width: 1250px;
+  grid-template-columns: 160px minmax(0, 1fr) 160px; /* Columnas ligeramente más firmes */
+  max-width: 1420px;                                  /* <--- Cambia 1250px por 1420px */
   margin: 0 auto;
   width: 100%;
   min-height: calc(100vh - 60px);
